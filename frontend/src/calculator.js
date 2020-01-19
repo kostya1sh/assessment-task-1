@@ -22,8 +22,6 @@ export default class Calculator {
       const response = await this.client.calculateExchange(this.from, this.to, this.amount);
       this.resultAmount = response.data['amount'];
       this.resultCurrency = response.data['currency'];
-    } else {
-      throw Error('Invalid data');
     }
   }
 }
