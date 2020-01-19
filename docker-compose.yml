@@ -1,0 +1,27 @@
+version: '2'
+networks:
+    default:
+      driver: bridge
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/app
+    ports:
+      - "8080:8080"
+    command: http-server dist
+    networks:
+      - default
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    working_dir: /app
+    volumes:
+      - ./backend:/app
+    ports:
+      - "9900:9900"
+    networks:
+      - default
